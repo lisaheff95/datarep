@@ -52,36 +52,166 @@
         <script src="static/js/jquery.fancybox.js"></script>
         <!-- template main js -->
         <script src="static/js/main.js"></script>
-    </head>
-    <body>
+				<style>
+				
+					button {
+					
+							background-color: Transparent;
+							background-repeat:no-repeat;
+							border: none;
+							cursor:pointer;
+							overflow: hidden;
+							
+							color: #02bdd5;
+							display: inline-block;
+							margin: 0 10px 0 0;
+							padding: 10px 40px;
+							font-size: 15px;
+							font-family: 'Roboto', sans-serif;
+							line-height: 1.8;
+													  
+							box-shadow: none;
+							border-radius: 0;
+					}
+
+					button:focus {
+					
+						  outline: none
+					}
+					
+					button:hover{
+					background: #e6fcff;
+					}
+				
+				
+				
+				
+				</style>
+    
        
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
+			<script>
 
-$(document).ready(function(){
-    $("button").click(function(){
-        $.get("/about", function(data, status){
-		$("#about").load("/about");
-        });
-    });
 
-    $("#btn1").click(function(){
-        $.get("/gallery", function(data, status){
-		$("#about").load("/gallery");
-        });
-    });
+					$(document).ready(function(){
+						$("#btn3").click(function(){
+							$.get("/home", function(data, status){
+							$("#page").load("/home");
+							});
+						});
+					 });
+						
+					$(document).ready(function(){
+						$("#button").click(function(){
+							$.get("/about", function(data, status){
+							$("#page").load("/about");
+							});
+						});
+					});
 
-    $("#btn2").click(function(){
-        $.get("/contact", function(data, status){
-		$("#about").load("/contact");
-        });
-    });
-});
-//i put in #about in the contact one, it brings you to the page but refreshes it
+					$(document).ready(function(){
+						$("#btn1").click(function(){
+							$.get("/gallery", function(data, status){
+							$("#page").load("/gallery");
+							});
+						});
+					});
 
-</script>
+					$(document).ready(function(){
+						$("#btn2").click(function(){
+							$.get("/contact", function(data, status){
+							$("#page").load("/contact");
+							});
+						});
+					});
+					
+				function update() {
+
+						var io = {"name":"Heffernan",
+
+						"_rev": "1-967a00dff5e02add41819138abb3284d"};
+
+							$.ajax({
+
+							type: "PUT",
+
+							url: "http://127.0.0.1:5984/contactdb/_all_docs",
+
+							contentType: "application/json",
+
+							data: JSON.stringify(io),
+
+							dataType: "json",
+
+							success: function(data) {
+
+							alert(data.id + " created!");
+
+							},
+
+							error: function(data) {
+
+							alert(" failed!");
+
+							}
+
+						});
+
+				} 
+
+
+				function create() {
+
+						var io = {"name":"My name is Lisa!"
+
+						};
+
+							$.ajax({
+
+							type: "POST",
+
+							url: "http://127.0.0.1:5984/contactdb/_all_docs",
+
+							contentType: "application/json",
+
+							data: JSON.stringify(io),
+
+							dataType: "json",
+
+							success: function(data) {
+
+							alert(data.id + " created!");
+
+							},
+
+								error: function(data) {
+
+								alert(" failed!");
+
+								}
+
+						});
+
+				}
+				
+				// Check the length of the history stack
+				console.log(history.length);
+
+				// Send the user agent forward
+				console.log(history.forward());
+
+				// Send the user agent back
+				console.log(history.back());
+
+				// Send the user agent back (negative) or forward (positive)
+				// by a given number of items
+				console.log(history.go(-3));
+
+		</script>
+		
    </head>
+   
    <body>
 	<header id="top-bar" class="navbar-fixed-top animated-header">
             <div class="container">
@@ -108,9 +238,10 @@ $(document).ready(function(){
                     <div class="main-menu">
                         <ul class="nav navbar-nav navbar-right">
                            
-                            <button id ="button" >About</button>
-                            <button id ="btn1" >Gallery</button>
-                            <button id ="btn2">Contact</button>
+                            <li><button id ="btn3" >Home</button></li>
+                            <li><button id ="button">About</button></li>
+                            <li><button id ="btn1" >Gallery</button></li>
+                            <li><button id ="btn2">Contact</button></li>
                             
                            
      
@@ -127,7 +258,7 @@ $(document).ready(function(){
         Slider Section Start
         ================================================== -->
 		
-		<div id = "about">
+		<div id = "page">
 		
 		 
         <section id="hero-area" >
@@ -149,9 +280,8 @@ $(document).ready(function(){
                                 </section> <!-- cd-intro -->
                                 <!-- /.slider -->
                                 <h2 class="wow fadeInUp animated" data-wow-delay=".6s" >
-                                    With 10 years experience, I've occupied many roles including digital design director,<br> web designer and developer. This site showcases some of my work.
+                                    Final year student studying Computing and Digital Media in Galway-Mayo Institute of Technology. Trying to pursue a career in the IT industry.
                                 </h2>
-                                <a class="btn-lines dark light wow fadeInUp animated smooth-scroll btn btn-default btn-green" data-wow-delay=".9s" href="#works" data-section="#works" >View Works</a>
                                 
                             </div>
                         </div>
@@ -167,7 +297,7 @@ $(document).ready(function(){
 			
 			
 			
-            <section id="about">
+            <section id="about1">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
@@ -204,9 +334,9 @@ $(document).ready(function(){
             <section id="works" class="works">
                 <div class="container">
                     <div class="section-heading">
-                        <h1 class="title wow fadeInDown" data-wow-delay=".3s">Latest Works</h1>
+                        <h1 class="title wow fadeInDown" data-wow-delay=".3s">College Modules</h1>
                         <p class="wow fadeInDown" data-wow-delay=".5s">
-                            Aliquam lobortis. Maecenas vestibulum mollis diam. Pellentesque auctor neque nec urna. Nulla sit amet est. Aenean posuere <br> tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+                           Here are all the modules I am currently taking in my 4th Year of college. <br> The content in these modules are very hard. There is a lot of things to learn.
                         </p>
                     </div>
                     <div class="row">
@@ -217,14 +347,14 @@ $(document).ready(function(){
                                     <div class="overlay">
                                         <div class="buttons">
                                             <a rel="gallery" class="fancybox" href="static/images/portfolio/item-1.jpg">Demo</a>
-                                            <a target="_blank" href="single-portfolio.html">Details</a>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <figcaption>
                                 <h4>
-                                <a href="#">
-                                    Dew Drop
+                                <a>
+                                    3D-Virtual Worlds
                                 </a>
                                 </h4>
                                 <p>
@@ -240,14 +370,14 @@ $(document).ready(function(){
                                     <div class="overlay">
                                         <div class="buttons">
                                             <a rel="gallery" class="fancybox" href="static/images/portfolio/item-2.jpg">Demo</a>
-                                            <a target="_blank" href="single-portfolio.html">Details</a>
+                                           
                                         </div>
                                     </div>
                                 </div>
                                 <figcaption>
                                 <h4>
-                                <a href="#">
-                                    Bottle Mockup
+                                <a>
+                                    Data Represenation and Querying
                                 </a>
                                 </h4>
                                 <p>
@@ -263,14 +393,14 @@ $(document).ready(function(){
                                     <div class="overlay">
                                         <div class="buttons">
                                             <a rel="gallery" class="fancybox" href="static/images/portfolio/item-3.jpg">Demo</a>
-                                            <a target="_blank" href="single-portfolio.html">Details</a>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <figcaption>
                                 <h4>
-                                <a href="#">
-                                    Table Design
+                                <a>
+                                    Secure Web Applications
                                 </a>
                                 </h4>
                                 <p>
@@ -286,14 +416,14 @@ $(document).ready(function(){
                                     <div class="overlay">
                                         <div class="buttons">
                                             <a rel="gallery" class="fancybox" href="static/images/portfolio/item-4.jpg">Demo</a>
-                                            <a target="_blank" href="single-portfolio.html">Details</a>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <figcaption>
                                 <h4>
-                                <a href="#">
-                                    Make Up elements
+                                <a>
+                                    Entrepreneurship
                                 </a>
                                 </h4>
                                 <p>
@@ -309,14 +439,14 @@ $(document).ready(function(){
                                     <div class="overlay">
                                         <div class="buttons">
                                             <a rel="gallery" class="fancybox" href="static/images/portfolio/item-5.jpg">Demo</a>
-                                            <a target="_blank" href="single-portfolio.html">Details</a>
+                                           
                                         </div>
                                     </div>
                                 </div>
                                 <figcaption>
                                 <h4>
-                                <a href="#">
-                                    Shoping Bag Concept
+                                <a>
+                                    Group Project
                                 </a>
                                 </h4>
                                 <p>
@@ -332,14 +462,14 @@ $(document).ready(function(){
                                     <div class="overlay">
                                         <div class="buttons">
                                             <a rel="gallery" class="fancybox" href="static/images/portfolio/item-6.jpg">Demo</a>
-                                            <a target="_blank" href="single-portfolio.html">Details</a>
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <figcaption>
                                 <h4>
-                                <a href="#">
-                                    Caramel Bottle
+                                <a>
+                                    Advanced Databases
                                 </a>
                                 </h4>
                                 <p>
@@ -452,18 +582,21 @@ $(document).ready(function(){
             Call To Action Section Start
             ================================================== -->
             <section id="call-to-action">
+			
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="block">
                                 <h2 class="title wow fadeInDown" data-wow-delay=".3s" data-wow-duration="500ms">SO WHAT YOU THINK ?</h1>
                                 <p class="wow fadeInDown" data-wow-delay=".5s" data-wow-duration="500ms">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis,<br>possimus commodi, fugiat magnam temporibus vero magni recusandae? Dolore, maxime praesentium.</p>
-                                <a href="contact.html" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact With Me</a>
+                                <a href="#" class="btn btn-default btn-contact wow fadeInDown" data-wow-delay=".7s" data-wow-duration="500ms">Contact With Me</a>
                             </div>
                         </div>
                         
                     </div>
+                
                 </div>
+                
             </section>
 		  
 
@@ -507,7 +640,7 @@ $(document).ready(function(){
                     </div>
                 </div>
               
-           </div><!--about end div-->
+           </div><!--page end div-->
 
             </footer> <!-- /#footer -->
               
